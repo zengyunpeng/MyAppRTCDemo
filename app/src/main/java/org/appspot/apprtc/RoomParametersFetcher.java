@@ -82,6 +82,8 @@ public class RoomParametersFetcher {
 
   private void roomHttpResponseParse(String response) {
     Log.d(TAG, "Room response: " + response);
+    //连接到https://appr.tc/join/733641499请求
+    //返回的响应结果   {"params": {"is_initiator": "true", "room_link": "https://appr.tc/r/243076859", "version_info": "{\"gitHash\": \"06b18b54af995bab9e16c2648ddb7edbbe553541\", \"branch\": \"master\", \"time\": \"Mon Sep 14 17:52:24 2020 +0200\"}", "messages": [], "error_messages": [], "client_id": "24242161", "ice_server_transports": "", "bypass_join_confirmation": "false", "wss_url": "wss://apprtc-ws.webrtc.org:443/ws", "media_constraints": "{\"audio\": true, \"video\": true}", "include_loopback_js": "", "header_message": "This is a demo of AppRTC and not an official product like Duo or Meet.", "is_loopback": "false", "offer_options": "{}", "pc_constraints": "{\"optional\": []}", "pc_config": "{\"rtcpMuxPolicy\": \"require\", \"bundlePolicy\": \"max-bundle\", \"iceServers\": []}", "wss_post_url": "https://apprtc-ws.webrtc.org:443", "ice_server_url": "https://appr.tc/v1alpha/iceconfig?key=", "warning_messages": [], "room_id": "243076859"}, "result": "SUCCESS"}
     try {
       List<IceCandidate> iceCandidates = null;
       SessionDescription offerSdp = null;
@@ -147,6 +149,7 @@ public class RoomParametersFetcher {
         }
       }
 
+      //返回信令服务器的地址,turn服务器地址(iceServer)
       SignalingParameters params = new SignalingParameters(
           iceServers, initiator, clientId, wssUrl, wssPostUrl, offerSdp, iceCandidates);
       events.onSignalingParametersReady(params);
